@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.finalPjt.model.dao.TimelineDao">
+
+	<insert id="insertTimeline" parameterType="Timeline">
+		INSERT INTO timeline
+		VALUES (#{u_id}, #{reg_date}, #{content},#{lesson},
+		#{v_url}, #{from_lat}, #{from_lng}, #{to_lat}, #{to_lng});
+	</insert>
+	
+	<update id="updateTimeline" parameterType="Timeline">
+		UPDATE (content, lesson, v_url, from_lat, from_lng, to_lat, to_lng)
+		SET 
+		content = #{content},
+		lesson = #{lesson},
+		v_url = #{v_url},
+		from_lat = #{from_lat},
+		from_lng = #{from_lng},
+		to_lat = #{to_lat},
+		to_lng = #{to_lng}
+		WHERE u_id = #{u_id} 
+		AND reg_date = #{reg_date};
+	</update>
+
+	<select id = "selectAllTimeline" resultType="Timeline" parameterType="String">
+		SELECT * FROM timeline 
+		WHERE u_id = #{u_id}
+	</select>
+	
+	<delete id="deleteTimeline" parameterType = "String">
+		DELETE * FROM timeline
+		WHERE u_id = #{u_id}
+		AND reg_date = #{reg_date}
+	</delete>
+	
+
+
+</mapper>
